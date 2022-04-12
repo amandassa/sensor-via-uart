@@ -1,9 +1,4 @@
-@ Various macros to access the GPIO pins
-@ on the Raspberry Pi.
-@
-@ R8 - memory map address.
-@
-
+@ Mapping -> UART Config
 @ declaração de constantes
 .equ sys_open, 5 @ open and possibly create a file
 .equ sys_mmap2, 192 @ call system linux para mapear os endereços de memória
@@ -21,9 +16,17 @@
 @ OFFSETS DOS REGISTRADORES DA UART
 .equ UART_CR, 0x30 @ REGISTRADOR DE CONTROLE
 .equ UART_FR, 0X18 @ REGISTRADOR DE FLAGS (STATUS DA TRANSMSSÃO)
-.equ UART_DR, 0x0  @ REGISTRADOR DE DADOS 
+.equ UART_DR, 0x0  @ REGISTRADOR DE DADOS
+.equ UART_LCR, 0x2c @ REGISTRADOR DE LINHA DE CONTROLE (FIFO) 
+.equ UART_IBRD, 0x24 @ integer baud rate divisor
+.equ UART_FBRD, 0x28 @ fractional baud rate divisor
 @ CONDICIONAIS DE CHECAGEM DOS BITS DO REGISTRADOR DE FLAGS
-.equ UART_TXFF, (1<<5) 
+.equ UART_TXFF, (1<<5)
+.equ UART_RXE, (1<<9) @ Enable receiver
+.equ UART_TXE, (1<<8) @ Enable transmitter
+.equ UART_UARTEN, (1<<0) @ Enable UART
+.equ FINALBITS, (UART_RXE|UART_TXE|UART_UARTEN)
+
 
 
 .align 2
@@ -73,7 +76,6 @@ _start: @ mapMem
 	ldr r5, =gpioaddr @ address we want / 4096
  	ldr r5, [r5] @ load the address
  	mov r1, #pagelen @ size of mem we want
-@ mem protection options
  	mov r2, #(PROT_READ + PROT_WRITE)
  	mov r3, #MAP_SHARED @ mem share options
  	mov r0, #0 @ let linux choose a virtual address
@@ -82,25 +84,51 @@ _start: @ mapMem
 	movs r6, r0 @ vir
 @ CONFIGURAÇÕES DA UART
 @ DESLIGAR A UART
-	ldr r2, =UART_CR
-	ldr r2, [r2]
 	ldr r1, [r8, r2]  @ R1 = REGISTRADOR DE CONROLE UART_CR
-	mov r0, #0 @ desliga a uart    r0 = 0000 0000 0000 0000 0000 0000 0000 0000
-	str r0, [r8, r2]  @ UART_CR = 0000 0000 0000 0000 0000 0001 0000 0000 
+	mov r0, #0 @ desliga a uart 0 em CR
+	str r0, [r8, #UART_CR]  @ UART_CR = 0000 0000 0000 0000 0000 0001 0000 0000 
 	@ setando o dado enviado em r0
-	mov r0, #1
-	lsl r0, #8 @ dado 0000 0000 0000 0000 0000 0000 1000 0000
+
 @ AGUARDAR O FIM DA RECEPÇÃO OU TRANSMISSÃO DO CARACTERE ATUAL (OLHAR FIFO)
 loop: 	ldr r2, [r8, #UART_FR]
 	tst r2, #UART_TXFF @ VERIFICAR SE TA CHEIO O FIFO
         bne loop
+        
+@ LIMPANDO FIFO
+	mov r0, #0
+	lsl r0, #4
+	str r0 [r8, #UART_LCR]
 
+@ CONFIGURANDO BAUD RATE
+	@ SUPONDO QUE TEMOS NOSSA BAUDRATE DESEJADA
+	@lsl r1,r0,#4 @ mulipliquei por 16 a baud que estava em r0.
+	@ldr r0,=(3000000<<6)
+	@lsr r0, r1 @ CLOCK/BAUD*16 R0/R1
+	@srt r0, [r8, #]
+
+	
+	
+	mov r0, #1
+	str r0, [r8, #UART_IBRD]
+	mov r0, #0x28
+	str r0, [r8, #UART_FBRD]
+	
+@ HABILITANDO TX E RX E LIGANDO A UART
+	ldr r0, =FINALBITS
+	str r0, [r8, #UART_CR]
+	@ méodo abaixo era reiventando a roda
+	@ mov r1, #1 @ r1 = 0000 0000 0000 0000 0000 0000 0000 0001
+	@ lsl r1, #8 @ r1 = 0000 0000 0000 0000 0000 0001 0000 0000
+	@ add r0, r0, r1 @ r0 = 0000 0000 0000 0000 0000 0001 0000 0001
+	mov r0, 0b10101010
 	str r0, [r8, #UART_DR]
-
-@	mov r1, #1 @ r1 = 0000 0000 0000 0000 0000 0000 0000 0001
-@	lsl r1, #8 @ r1 = 0000 0000 0000 0000 0000 0001 0000 0000
-@	add r0, r0, r1 @ r0 = 0000 0000 0000 0000 0000 0001 0000 0001
 	
 _end:   mov r0, #0 @ Use 0 return code
         mov r7, #1 @ Command code 1 terminates
         svc 0 @ Linux command to terminate
+
+@#1 em ibrd e 111000 em ir
+	@mov r0, #1
+	@lsl r0, #8 @ dado 0000 0000 0000 0000 0000 0000 1000 0000
+
+	@str r0, [r8, #UART_DR]

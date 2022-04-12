@@ -1,3 +1,4 @@
+
 @ LED-Blink assembly
 @ R8 - endereço base retornado do mapeamento de memoria.
 @
@@ -88,7 +89,7 @@ _start: @ mapMem
  	orr r1, r0 @ set the bit
  	str r1, [r8, r2] @ save it to reg to do work
 
-	mov	r6, #10
+	mov	r6, #10		@ count 10 blinks
 	
 loop:	
 @ .macro GPIOTurnOn pin, value

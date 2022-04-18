@@ -1,17 +1,8 @@
-CC = as
-
-LINKER = ld
-
-DEBUG = -g
-
-FLAGOBJ = -o
-
-EXECUTAVEL = pbl1
-
-OBJ = pbl1.o
-
-ASSEMBLY = pbl1.s
-
-[TAB]$(CC) $(DEBUG) $(FLAGOBJ) $(OBJ) $(ASSEMBLY)
-
-[TAB]$(LINKER) $(FLAGOBJ) $(EXECUTAVEL) $(OBJ) 
+pbl1: pbl1.o
+  ld -o pbl1 pbl1.o
+  
+  pbl1.o: pbl1.s
+    as -g -o pbl1.o pbl1.s
+    
+    clean:
+      rm -i *.o *~

@@ -25,6 +25,8 @@
 .equ UART_FBRD, 0x28 @ DIVIDOR DE BAURDATE FRACIONÁRIO
 @ MANIPULAÇÃO DOS BITS DE REGISTRADORES (DESLOCAMENTO)
 .equ UART_TXFF, (1<<5) @ CHECAR SE O FIFO ESTÁ CHEIO
+.equ #UART_RXFE, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ VAZIO
+
 .equ UART_RXE, (1<<9) @ ATIVAR RECEBIMENTO  EX: (1>>9) DESLOCAR O BIT 1 PARA O NONO(9º) BIT DO REGISTRADOR ESCOLHIDO
 .equ UART_TXE, (1<<8) @ ATIVAR TRANSMIÇÃO
 .equ UART_UARTEN, (1<<0) @ LIGAR UART
@@ -111,12 +113,41 @@ loop: 	ldr r2, [r8, #UART_FR] @ CARREGANDO EM R2 O ENDEREÇO DO REGISTRADOR #UAR
 	mov r0, #BITS
 	str r0, [r8, #UART_LCR]
 
-@ SETANDO O DADO QUE É PRA SER ENVIADO NO REGIRSTRADOR DR
-loop1:	mov r0, #0b10101010   @ DECIMAL 170
+@ ENVIAR DADO
+.macro UART_PUT_BYTE byte
+		mov r0, #\byte  @ BYTE DE MENSAGEM A SER ENVIADO PARA A FPGA
 	    str r0, [r8, #UART_DR]
-		mov r0, #0b0000010   @ DECIMAL 2
-	    str r0, [r8, #UART_DR]
-		bl loop1
+		.endm
+
+.macro UART_GET_BYTE:
+	getlp: 
+		ldr r2,[r8,#UART_FR] @ read the flag resister
+		tst r2,#UART_RXFE @ VERIFICAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
+		bne getlp @ loop while receive FIFO is empty
+	ldr r0,[r8,#UART_DR] @ LER O DADO RECEBIDO DO REGISTRADOR DR
+	@ *******************PRECISAMOS RETORNAR O DADO ********************* !!!
+	tst r0,#UART_OE @ check for overrun error
+	bne get_ok1
+ @@ handle receive overrun error here - does nothing now
+
+get_ok1:
+ tst r0,#UART_BE @ check for break error
+ bne get_ok2
+ @@ handle receive break error here - does nothing now
+
+get_ok2:
+ tst r0,#UART_PE @ check for parity error
+ bne get_ok3
+ @@ handle receive parity error here - does nothing now
+
+get_ok3:
+ tst r0,#UART_FE @ check for framing error
+ bne get_ok4
+ @@ handle receive framing error here - does nothing now
+
+get_ok4:
+  @@ return
+mov pc,lr @ return the received character
 _end:   mov r0, #0 @ SETANDO 0 PARA SER RETORNADO
         mov r7, #1 @ SYSCALL PARA ENCERRAR A EXECUÇÃO
         svc 0 @ CHAMADA DE SERVIÇO LINUX

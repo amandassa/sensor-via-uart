@@ -26,6 +26,10 @@
 @ MANIPULAÇÃO DOS BITS DE REGISTRADORES (DESLOCAMENTO)
 .equ UART_TXFF, (1<<5) @ CHECAR SE O FIFO ESTÁ CHEIO
 .equ #UART_RXFE, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ VAZIO
+.equ UART_OE, (1<<11) @ overrun error bit
+.equ UART_BE, (1<<10) @ break error bit
+.equ UART_PE, (1<<9) @ parity error bit
+.equ UART_FE, (1<<8 ) @ framing error bit
 
 .equ UART_RXE, (1<<9) @ ATIVAR RECEBIMENTO  EX: (1>>9) DESLOCAR O BIT 1 PARA O NONO(9º) BIT DO REGISTRADOR ESCOLHIDO
 .equ UART_TXE, (1<<8) @ ATIVAR TRANSMIÇÃO

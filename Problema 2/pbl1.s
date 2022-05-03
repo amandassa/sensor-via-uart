@@ -128,30 +128,33 @@ loop: 	ldr r2, [r8, #UART_FR] @ CARREGANDO EM R2 O ENDEREÇO DO REGISTRADOR #UAR
 		ldr r2,[r8,#UART_FR] @ read the flag resister
 		tst r2,#UART_RXFE @ VERIFICAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
 		bne getlp @ loop while receive FIFO is empty
-	ldr r0,[r8,#UART_DR] @ LER O DADO RECEBIDO DO REGISTRADOR DR
+		ldr r0,[r8,#UART_DR] @ LER O DADO RECEBIDO DO REGISTRADOR DR
+		mov pc,lr @ teste de retorno
+		.endm
 	@ *******************PRECISAMOS RETORNAR O DADO ********************* !!!
-	tst r0,#UART_OE @ check for overrun error
-	bne get_ok1
+	@ tst r0,#UART_OE @ check for overrun error
+	@ bne get_ok1
+	
  @@ handle receive overrun error here - does nothing now
 
-get_ok1:
- tst r0,#UART_BE @ check for break error
- bne get_ok2
+@get_ok1:
+@ tst r0,#UART_BE @ check for break error
+ @bne get_ok2
  @@ handle receive break error here - does nothing now
 
-get_ok2:
- tst r0,#UART_PE @ check for parity error
- bne get_ok3
+@get_ok2:
+ @tst r0,#UART_PE @ check for parity error
+ @bne get_ok3
  @@ handle receive parity error here - does nothing now
 
-get_ok3:
- tst r0,#UART_FE @ check for framing error
- bne get_ok4
+@get_ok3:
+ @tst r0,#UART_FE @ check for framing error
+ @bne get_ok4
  @@ handle receive framing error here - does nothing now
 
-get_ok4:
+@get_ok4:
   @@ return
-mov pc,lr @ return the received character
+@mov pc,lr @ return the received character
 _end:   mov r0, #0 @ SETANDO 0 PARA SER RETORNADO
         mov r7, #1 @ SYSCALL PARA ENCERRAR A EXECUÇÃO
         svc 0 @ CHAMADA DE SERVIÇO LINUX

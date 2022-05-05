@@ -13,7 +13,7 @@ int param;
     uartPut(param);
 
     int receive = uartGet();
-    printf("%d", "Dado Recebido: ", receive);
+    printf("%s,%d", "Dado Recebido: ", receive);
 
     
 }

@@ -122,4 +122,9 @@ loop: 	ldr r2, [r8, #UART_FR] @ CARREGANDO EM R2 O ENDEREÇO DO REGISTRADOR #UAR
 @.macro UART_PUT_BYTE byte
 		@ mov r0, #\byte  @ BYTE DE MENSAGEM A SER ENVIADO PARA A FPGA
 		str r9, [r8, #UART_DR]
+
+endTX: 	ldr r1, [r8, UART_FR]
+		and r1, 0b1000
+		cmp r1, #0
+		bne endTX
 		bx lr

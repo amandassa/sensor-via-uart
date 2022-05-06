@@ -1,8 +1,7 @@
 #include "stdio.h"
-//#include "libpbl1.a"  biblioteca a ser criada
 extern void uartPut(int);
 extern int uartGet();
-
+//#include "libpbl1.a" as funções externas trazidas da biblioteca que criamos e que foi compilada junto a esse código
 
 int main (){
 

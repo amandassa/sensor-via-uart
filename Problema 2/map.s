@@ -56,8 +56,8 @@ uartaddr: .word 0x20201 @ OFFSET BASE DA UART PL011
 .align 2 
 
 .section .text
-.global uartgGet
-uartGet: @ MAPEAMENTO DA MEMÓRIA
+.global uartMap
+uartMap: @ MAPEAMENTO DA MEMÓRIA
 	
 	@ ABRINDO ARQUIVO
 	ldr r0, =devmem

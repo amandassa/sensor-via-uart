@@ -6,7 +6,7 @@ extern int uartGet();
 int main (){
 
 int param;
-
+    uartConfig();
     printf("Digite um Dado para enviar: ");
     scanf("%d", &param);
     uartPut(param);

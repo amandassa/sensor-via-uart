@@ -9,8 +9,7 @@ module DHT11(
 		output [7:0] TEMP_FLOAT,
 		output [7:0] CRC,
 		output WAIT,
-		output DEBUG,
-		output error
+		output DEBUG
 	);
 	
 	
@@ -25,16 +24,13 @@ module DHT11(
 	reg [39:0] INTDATA;
 	wire DHT_IN;
 	
+	reg DEBUG_REG;
+	reg error;
+	
 	assign WAIT = WAIT_REG;
 	assign DEBUG = DEBUG_REG;
 	
-TRIS TRIS_DATA(
-	.PORT(DHT_DATA),
-	.DIR(DIR),
-	.SEND(DHT_OUT),
-	.READ(DHT_IN)
-	);
-	
+
 	assign HUM_INT[7] = INTDATA[0];
 	assign HUM_INT[6] = INTDATA[1];
 	assign HUM_INT[5] = INTDATA[2];
@@ -214,7 +210,7 @@ TRIS TRIS_DATA(
 						begin
 							if(DHT_IN == 1'b1)
 							begin
-								SATATE <= S7;
+								STATE <= S7;
 							end else begin
 								error <= 1'b1;
 								COUNTER <= 26'b00000000000000000000000000;

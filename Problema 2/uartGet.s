@@ -80,72 +80,9 @@ uartGet: @ MAPEAMENTO DA MEMÓRIA
  	svc 0 @ CHAMADA DO SERVIÇO
  	movs r8, r0 @ ARMAZENANDO EM R8 NOSSO ENDEREÇO BASE VIRUTAL DA UART
 
-@ DESLIGAR A UART
-	mov r0, #0 @ ZERA TODOS OS BITS DE R0
-    str r0, [r8, #UART_CR]  @ CARREGA O REGISTRADOR R0 (ZERADO) NO REGISTRADOR UART_CR 
-								   @ UART_CR = 0000 0000 0000 0000 0000 0000 0000 0000 	
-
-@ AGUARDAR O FIM DA RECEPÇÃO OU TRANSMISSÃO DO CARACTERE ATUAL (OLHAR FIFO)
-loop: 	ldr r2, [r8, #UART_FR] @ CARREGANDO EM R2 O ENDEREÇO DO REGISTRADOR #UART_FR
-	    tst r2, #UART_TXFF @ VERIFICAR SE TA CHEIO O FIFO
-        bne loop
-        
-@ LIMPANDO/DESABILITTANDO FIFO
-	ldr r1, [r8, #UART_LCR] @ CARREGANDO EM R1 O ENDEREÇO DO REGISTRADOR #UART_FR 
-	mov r0, #1 				@ CARREGANDO O BIT 1 EM R0
-	lsl r0, #4				@ DESLOCAMENTO A ESQUERDA EM 4 POSIÇÕES (MESMO QUE MULTIPLICAR POR 2^4)
-	bic r1, r0				@ LIMPANDO O BIT DESLOCADO (BIC = BIT CLEAR)NO RESGITRADOR R1 
-	str r1, [r8, #UART_LCR]	@ CARREGANDO R1 NO REGISTRADOR UART_LCR (LINHA DE CONTROLE)
-
-@ CONFIGURANDO BAUD RATE
-	@ CLOCKUART = 3Mhz
-	@ BAUDDIV = CLOCKUART/(16xBAUDRATE)
-	@ BAUDDIV = CLOCKUART/(16x9600)	= 19,53125
-	@ PARTE INTEIRA = 19
-	@ PARTE FRACIONÁRIA = 0,53125
-	@ PARTE FRACIONÁRIA = (PARTE FRACIONÁRIA * 64) + 0.5 = 34,5	
-	mov r0, #212  
-	str r0, [r8, #UART_IBRD]
-	mov r0, #63 
-	str r0, [r8, #UART_FBRD]
-
-
-@ HABILITANDO TX E RX E LIGANDO A UART
-	ldr r0, =FINALBITS 
-    str r0, [r8, #UART_CR]
-
-@ LIGANDO FIFO, PARIDADE E STOP BITS
-	mov r0, #BITS
-	str r0, [r8, #UART_LCR]
-
 getlp: 
 	ldr r2,[r8,#UART_FR] @ read the flag resister
 	tst r2,#UART_RXFE @ VERIFICAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
 	bne getlp @ loop while receive FIFO is empty
 	ldr r0,[r8,#UART_DR] @ LER O DADO RECEBIDO DO REGISTRADOR DR
 	bx lr	
-	
-	@ *******************PRECISAMOS RETORNAR O DADO ********************* !!!
-	@ tst r0,#UART_OE @ check for overrun error
-	@ bne get_ok1
-	
- @@ handle receive overrun error here - does nothing now
-
-@get_ok1:
-@ tst r0,#UART_BE @ check for break error
- @bne get_ok2
- @@ handle receive break error here - does nothing now
-
-@get_ok2:
- @tst r0,#UART_PE @ check for parity error
- @bne get_ok3
- @@ handle receive parity error here - does nothing now
-
-@get_ok3:
- @tst r0,#UART_FE @ check for framing error
- @bne get_ok4
- @@ handle receive framing error here - does nothing now
-
-@get_ok4:
-  @@ return
-@mov pc,lr @ return the received character

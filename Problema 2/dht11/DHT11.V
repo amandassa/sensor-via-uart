@@ -111,7 +111,7 @@ module DHT11(
 							DIR <= 1'b1;
 							DHT_OUT <= 1'b1;
 							WAIT_REG <= 1'b0;
-							if(COUNTER < 1800000)
+							if(COUNTER < 900000)  // 1/50mhz = 2x10^-8 x 900.000 = 0,018s =  18ms
 							begin
 								COUNTER <= COUNTER + 1'b1;
 							end else begin
@@ -124,7 +124,7 @@ module DHT11(
 							//ELEVA PARA NIVEL LOGICO BAIXO E AGUARDA 18 MILISEGUNDOS
 							DHT_OUT <= 1'b1;
 							WAIT_REG <= 1'b0;
-							if(COUNTER < 1800000)
+							if(COUNTER < 900000)
 							begin
 								COUNTER <= COUNTER + 1'b1;
 							end else begin
@@ -136,7 +136,7 @@ module DHT11(
 						begin
 							DHT_OUT <= 1'b1;
 							//LEVA PARA NIVEL LOGICO ALTO E AGUARDA 20 MICROSEGUNDOS
-							if(COUNTER < 2000)
+							if(COUNTER < 1000)
 							begin
 								COUNTER <= COUNTER + 1'b1;
 							end else begin
@@ -146,7 +146,7 @@ module DHT11(
 						end
 					S3:
 						begin
-							if(COUNTER < 6000 && DHT_IN == 1'b1)
+							if(COUNTER < 3000 && DHT_IN == 1'b1)
 							begin
 								COUNTER <= COUNTER + 1'b1;
 								STATE <= S3;
@@ -165,7 +165,7 @@ module DHT11(
 					S4:
 						begin
 							//DETECTA PULSO DE SINCRONISMO - P1
-							if(DHT_IN == 1'b0 && COUNTER < 8800)
+							if(DHT_IN == 1'b0 && COUNTER < 4400)
 							begin
 								COUNTER <= COUNTER + 1'b1;
 								STATE <= S4;
@@ -184,7 +184,7 @@ module DHT11(
 					S5:
 						begin
 							//DETECTA PULSO DE SINCRONISMO - P2
-							if(DHT_IN == 1'b1 && COUNTER < 8800)
+							if(DHT_IN == 1'b1 && COUNTER < 4400)
 							begin
 								COUNTER <= COUNTER + 1'b1;
 							end else begin
@@ -225,7 +225,7 @@ module DHT11(
 								COUNTER <= 26'b00000000000000000000000000;
 								STATE <= S8;
 							end else begin
-								if(COUNTER < 3200000)
+								if(COUNTER < 1600000)
 								begin
 									COUNTER <= COUNTER + 1'b1;
 									STATE <= S7;
@@ -241,7 +241,7 @@ module DHT11(
 						begin
 							if(DHT_IN == 1'b0)
 							begin
-								if(COUNTER > 5000)
+								if(COUNTER > 2500)
 								begin
 									INTDATA[index] <= 1'b1;
 									DEBUG_REG <= 1'b1;
@@ -259,7 +259,7 @@ module DHT11(
 								end
 							end else begin
 								COUNTER <= COUNTER + 1'b1;
-								if(COUNTER > 3200000)
+								if(COUNTER > 1600000)
 								begin
 									error <= 1'b1;
 									STATE <= STOP;
@@ -286,7 +286,7 @@ module DHT11(
 								error <= 1'b0;
 								index <= 6'b000000;
 							end else begin
-								if(COUNTER < 3200000)
+								if(COUNTER < 1600000)
 								begin
 									INTDATA <= 40'b0000000000000000000000000000000000000000;
 									COUNTER <= COUNTER + 1'b1;

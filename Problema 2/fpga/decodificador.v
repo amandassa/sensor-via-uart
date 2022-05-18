@@ -1,7 +1,7 @@
 module decodificador (
-	output [0:7] dados,
-	input wire [0:7] endereco,
-	input wire [0:7] solicitacao,
+	output [0:7] out_dados_8,
+	input wire [0:7] in_endereco_8,
+	input wire [0:7] in_solicitacao_8,
 	input wire [7:0] HUM_INT,
 	input wire [7:0] HUM_FLOAT,
 	input wire [7:0] TEMP_INT,
@@ -24,7 +24,7 @@ module decodificador (
 	end
 	
 	always @ (posedge clock) begin
-		case (solicitacao)
+		case (in_solicitacao_8)
 		3: begin		// status do sensor
 			CRC_SUM = (HUM_INT + HUM_FLOAT + TEMP_INT + TEMP_FLOAT);
 			if (CRC_SUM == CRC) begin
@@ -36,14 +36,12 @@ module decodificador (
 		end
 		4: begin 		// temperatura
 			aux_dados = TEMP_INT;
-			aux_float = TEMP_FLOAT;
 		end
 		5: begin 
 			aux_dados = HUM_INT;
-			aux_float = HUM_FLOAT;
 		end
 		endcase
 	end
-	assign dados = aux_dados;
+	assign dados_out8 = aux_dados;
 	
 endmodule 

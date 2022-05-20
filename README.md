@@ -1,7 +1,3 @@
-PROJETO DE UM SISTEMA MODULAR PARA COMUNICAÇÃO COM SENSORES DE TEMPERATURA E UMIDADE DA DISCIPLINA TEC499- MI SISTEMAS DIGITAIS DO CURSO DE ENGENHARIA DE COMPUTAÇÃO 
-DA UNIVERSIDADE ESTADUAL DE FEIRA DE SANTANA. SEMESTRE 2022.1
-- MEMBROS: ABEL RAMALHO, AMANDA, AURÉLIO BARRETO.
-
 # Sistema de comunicação serial com  Raspberry PI, FPGA Cyclone IV e Sensor DHT11
 
 Este projeto implementa um sistema de monitoramento via sensor DHT11 e comunicação serial RS-232 que funciona entre o SBC Raspberry Pi Zero e a FPGA Cyclone IV (EP4CE30F23).

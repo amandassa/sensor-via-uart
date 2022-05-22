@@ -19,7 +19,7 @@
 * Aurélio Rocha Barreto; <br>
 * Amanda Silva Santos. <br>
 
-## :Tutor: <br>
+## Tutor: <br>
 * Thiago Cerqueira de Jesus <br>
 
 

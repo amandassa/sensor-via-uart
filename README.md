@@ -28,13 +28,13 @@
 <div id="sumario">
     <h1>Sumário</h1>
 	<ul>
-		<li><a href="#inicio"> Início</li>
-        <li><a href="#equipe"> Equipe de Desenvolvimento</li>
-		<li><a href="#recursos-utilizados"> Recursos Utilizados </a></li>
-        <li><a href="#requisitos"> Requisitos Atendidos </a> </li>
-		<li><a href="#implementacao"> Implementação </a> </li>
-        <li><a href="#melhorias"> Possíveis Melhorias </a> </li>
-		<li><a href="#anexos"> Anexos </a></li>
+		<li><a href="#inicio"> <b>Início</b></li>
+        <li><a href="#equipe"> <b>Equipe de Desenvolvimento</b></li>
+		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
+        <li><a href="#requisitos"> <b>Requisitos Atendidos</b> </a> </li>
+		<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
+        <li><a href="#melhorias"> <b>Possíveis Melhorias</b> </a> </li>
+		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
 </div>
 

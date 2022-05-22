@@ -24,7 +24,7 @@
 
 
 <div id="recursos-utilizados">
-	<h1> Recursos Utilizados</h1>
+	<h1> Recursos Utilizados </h1>
 	<ul>
 		<li>FPGA Cyclone IV (EP4CE30F23);</li>
 		<li>Raspberry Pi Zero.</li>
@@ -39,7 +39,7 @@
     <h3>Realize o download do projeto</h3>
     <p><code>$ git clone https://github.com/amandassa/sensor-via-uart.git</code></p>
     <h3>Compilando o projeto na Raspberry Pi Zero</h3>
-    <p><code>$ cd /sensor-via-uart/Problema 2</code></p><br>
+    <p><code>$ cd /sensor-via-uart/Problema 2</code></p>
     <p>
         Tranfira os seguintes aquivos para o Raspberry P zero: 
     </p>
@@ -54,14 +54,19 @@
     <p><code>$ make</code></p>
     <p><code>$ sudo ./pbl2</code></p>
 </div>
-## Uso/Exemplos
 
-    ```bash
-    $ exemplo de solicitação e resposta 
-    ```
-
-
-## Demonstração
-
-Exemplo de conexão (fotos)
-
+<div id="anexos">
+	<h1> Anexos </h1>
+    <div id="raspberry-pi-zero" style="display: inline_block" align="center">
+			<img src=""/><br>
+		<p>
+		Placa Raspberry Pi Zero. Fonte: <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
+		</p>
+	</div>
+	<div id="fpga" style="display: inline_block" align="center">
+			<img src=""/><br>
+		<p>
+		Kit de Desenvolvimento Altera FPGA Mercurio IV. Fonte: <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
+		</p>
+	</div>	
+</div>

@@ -12,19 +12,24 @@
 	</ul>	
 </div>
 
-
-## Equipe de Desenvolvimento: <br>
-* Abel Ramalho Galvão <br>
-* Aurélio Rocha Barreto <br>
-* Amanda Silva Santos <br>
-
-## Tutor: <br>
-* Thiago Cerqueira de Jesus <br>
+<div id="equipe">
+    <h1>Equipe de Desenvolvimento:</h1>
+    <ul>
+		<li><a href="https://github.com/argalvao"> Abel Ramalho Galvão</li>
+		<li><a href="https://github.com/aureliobarreto"> Aurélio Rocha Barreto </a></li>
+        <li><a href="https://github.com/amandassa"> Amanda Silva Santos </a> </li>
+	</ul>
+    <h1>Tutor:</h1>
+    <ul>
+        <li><a href="https://github.com/thiagocj">Thiago Cerqueira de Jesus</a></li>
+    </ul>
+</div>
 
 <h1>Sumário</h1>
 <div id="sumario">
 	<ul>
 		<li><a href="#inicio"> Início</li>
+        <li><a href="#equipe"> Equipe de Desenvolvimento</li>
 		<li><a href="#recursos-utilizados"> Recursos Utilizados </a></li>
         <li><a href="#requisitos"> Requisitos Atendidos </a> </li>
 		<li><a href="#implementacao"> Implementação </a> </li>

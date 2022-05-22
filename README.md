@@ -40,7 +40,7 @@
 	</ul>	
 </div>
 
-<h1>Requisitos Atendidos></h1>
+<h1>Requisitos Atendidos</h1>
 <div id="requisitos">
     <p>Raspberry Pi Zero:</p>
 	<ul>

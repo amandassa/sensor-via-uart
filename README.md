@@ -44,7 +44,7 @@
 <div id="requisitos">
     <p>Raspberry Pi Zero:</p>
 	<ul>
-		<li>O código deverá ser escrito em linguagem C; </li>:heavy_check_mark:
+		<li>O código deverá ser escrito em linguagem C; :heavy_check_mark:</li>
 		<li></li>
 		<li></li>
 		<li></li>

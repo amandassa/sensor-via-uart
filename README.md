@@ -25,14 +25,15 @@
     </ul>
 </div>
 
-<h1>Sumário</h1>
 <div id="sumario">
+    <h1>Sumário</h1>
 	<ul>
 		<li><a href="#inicio"> Início</li>
         <li><a href="#equipe"> Equipe de Desenvolvimento</li>
 		<li><a href="#recursos-utilizados"> Recursos Utilizados </a></li>
         <li><a href="#requisitos"> Requisitos Atendidos </a> </li>
 		<li><a href="#implementacao"> Implementação </a> </li>
+        <li><a href="#melhorias"> Possíveis Melhorias </a> </li>
 		<li><a href="#anexos"> Anexos </a></li>
 	</ul>	
 </div>
@@ -45,8 +46,8 @@
 	</ul>	
 </div>
 
-<h1>Requisitos Atendidos</h1>
 <div id="requisitos">
+    <h1>Requisitos Atendidos</h1>
     <p><b>Raspberry Pi Zero:</b></p>
 	<ul>
 		<li>O código deverá ser escrito em linguagem C :heavy_check_mark:</li>
@@ -90,6 +91,13 @@
     <p><code>$ cd /sensor-via-uart/Problema 2/fpga</code></p>
     <p>
         Crie um projeto no <it>Altera Quartus Prime Lite Edition 21</it>, especificamente para a família EP4CE30F23 e importe os seguintes arquivos: 
+    </p>
+</div>
+
+<div id="melhorias">
+    <h1>Possíveis Melhorias</h1>
+    <p>
+    
     </p>
 </div>
 

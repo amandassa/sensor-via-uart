@@ -50,7 +50,7 @@
         <li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/uartGet.s">uartGet.s</a></li>
         <li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/uartPut.s">uartPut.s</a></li>
 	</ul><br>
-    <p>Execute os seguintes comandos:</p><br>
+    <p>Execute os seguintes comandos:</p>
     <p><code>$ make</code></p>
     <p><code>$ sudo ./pbl2</code></p>
     <h3>Compilando o projeto na FPGA</h3>

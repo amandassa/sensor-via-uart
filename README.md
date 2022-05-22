@@ -14,9 +14,9 @@
 
 
 ## Equipe de Desenvolvimento: <br>
-* Abel Ramalho Galvão; <br>
-* Aurélio Rocha Barreto; <br>
-* Amanda Silva Santos. <br>
+* Abel Ramalho Galvão <br>
+* Aurélio Rocha Barreto <br>
+* Amanda Silva Santos <br>
 
 ## Tutor: <br>
 * Thiago Cerqueira de Jesus <br>
@@ -26,7 +26,7 @@
 	<ul>
 		<li><a href="#inicio"> Início</li>
 		<li><a href="#recursos-utilizados"> Recursos Utilizados </a></li>
-        <li><a href="#requisitos"> Requisitos </a> </li>
+        <li><a href="#requisitos"> Requisitos Atendidos </a> </li>
 		<li><a href="#implementacao"> Implementação </a> </li>
 		<li><a href="#anexos"> Anexos </a></li>
 	</ul>	
@@ -35,20 +35,28 @@
 <div id="recursos-utilizados">
 	<h1> Recursos Utilizados </h1>
 	<ul>
-		<li>FPGA Cyclone IV (EP4CE30F23);</li>
-		<li>Raspberry Pi Zero.</li>
+		<li>FPGA Cyclone IV (EP4CE30F23)</li>
+		<li>Raspberry Pi Zero</li>
 	</ul>	
 </div>
 
-<h1>Requisitos atendidos></h1>
+<h1>Requisitos Atendidos></h1>
 <div id="requisitos">
     <p>Raspberry Pi Zero:</p>
 	<ul>
-		<li>O código deverá ser escrito em linguagem C; :heavy_check_mark:</li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>	
+		<li>O código deverá ser escrito em linguagem C :heavy_check_mark:</li>
+		<li>Utilizar o driver da UART implementado anteriormente :heavy_check_mark:</li>
+		<li>Capacidade de interligação com até 32 sensores :heavy_multiplication_x:</li>
+		<li>Mecanismo de controle de status de funcionamento dos sensores :heavy_check_mark:</li>
+        <li>Apenas o SBC será capaz de iniciar uma comunicação :heavy_check_mark:</li>
+	</ul>
+    <p>FPGA:</p>
+    <ul>
+		<li>O código deverá ser escrito em Verilog :heavy_check_mark:</li>
+		<li>Deverá ser capaz de ler e interpretar comandos oriundos do SBC :heavy_check_mark:</li>
+		<li>Os comandos serão compostos por palavras de 8 bits :heavy_check_mark:</li>
+		<li>As requisições do SBC são compostas de 2 bytes (Comando + Endereço) :heavy_multiplication_x:</li>
+	</ul>
 </div>
 
 <div id="implementacao">

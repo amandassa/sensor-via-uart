@@ -35,14 +35,14 @@
     <h1>Implementação</h1>
     <p>
         Para realizar a implementação deste projeto siga as etapas a seguir:
-    </p><br>
-    <h2>Realize o download do projeto</h2>
+    </p>
+    <h3>Realize o download do projeto</h3>
     <p><code>$ git clone https://github.com/amandassa/sensor-via-uart.git</code></p>
-    <h2>Compilando o projeto na Raspberry Pi Zero</h2>
+    <h3>Compilando o projeto na Raspberry Pi Zero</h3>
     <p><code>$ cd /sensor-via-uart/Problema 2</code></p><br>
     <p>
         Tranfira os seguintes aquivos para o Raspberry P zero: 
-    </p><br>
+    </p>
     <ul>
 		<li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/Makefile">Makefile</a></li>
 		<li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/pbl2.c">pbl2.c</a></li>
@@ -51,8 +51,8 @@
         <li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/uartPut.s">uartPut.s</a></li>
 	</ul><br>
     <p>Execute os seguintes comandos:</p><br>
-    <p><code>$ make</code></p><br>
-    <p><code>$ sudo ./pbl2</code></p><br>
+    <p><code>$ make</code></p>
+    <p><code>$ sudo ./pbl2</code></p>
 </div>
 ## Uso/Exemplos
 

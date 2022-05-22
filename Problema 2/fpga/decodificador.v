@@ -1,13 +1,14 @@
 module decodificador (
-	output [0:7] out_dados_8,
+	output [7:0] out_dados_8,
 	input wire [0:7] in_endereco_8,
-	input wire [0:7] in_solicitacao_8,
+	input wire [7:0] in_solicitacao_8,
 	input wire [7:0] HUM_INT,
 	input wire [7:0] HUM_FLOAT,
 	input wire [7:0] TEMP_INT,
 	input wire [7:0] TEMP_FLOAT,
 	input wire [7:0] CRC,
-	input clock
+	input clock,
+	output reg start
 	);
 	
 	reg [0:7] aux_dados; 
@@ -15,33 +16,29 @@ module decodificador (
 	reg [0:26] count;
 	reg CRC_SUM;
 	
-	
-	always @ (posedge clock) begin 
-		if (count == 26'h3FFFFFF) begin
-			count = 26'b00000000000000000000000000;
-		end
-		count <= count + 1'b1;
-	end
+
 	
 	always @ (posedge clock) begin
+		start = 1'b0;
 		case (in_solicitacao_8)
-		3: begin		// status do sensor
-			CRC_SUM = (HUM_INT + HUM_FLOAT + TEMP_INT + TEMP_FLOAT);
-			if (CRC_SUM == CRC) begin
-				aux_dados = 0;
-			end 
-			else begin
-				aux_dados = 31;
-			end
+		8'b00000011:	// status do sensor
+			begin
+				aux_dados = 8'b00000011;
+				start = 1'b1;
+			
+		
 		end
-		4: begin 		// temperatura
-			aux_dados = TEMP_INT;
+		8'b00000100: begin 		// temperatura
+			aux_dados = 8'b00000100;
+			start = 1'b1;
 		end
-		5: begin 
-			aux_dados = HUM_INT;
+		8'b00000101: begin 
+			aux_dados = 8'b00000101;
+			start = 1'b1;
 		end
 		endcase
 	end
-	assign dados_out8 = aux_dados;
+
+	assign out_dados_8 = aux_dados;
 	
 endmodule 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 extern void uartPut(int);
 extern int uartGet();
 extern void uartConfig();
@@ -28,9 +29,11 @@ int main (){
         switch (param)
         {
             case 1: {
-                uartPut(5);
+                
                 sensor();
+                uartPut(5);
                 //uartPut(endereco);
+                
                 int receive = uartGet();
                 system("clear");
                 printf("\033[0;34m");
@@ -39,25 +42,31 @@ int main (){
                 break;
             }
             case 2: {
-                uartPut(4);
+                
                 sensor();
+                uartPut(4);
                 //uartPut(endereco);
+               
                 int receive = uartGet();
                 system("clear");
                 printf("\033[0;33m");
-                printf("Temperatura: %dº C\n----------------------------------------------------------------------\n\n" , receive);
+                printf("Temperatura: %d° C\n----------------------------------------------------------------------\n\n" , receive);
                 printf("\033[0m");
                 break;
             }case 3: {
-                uartPut(3);
+                
                 sensor();
+                uartPut(3);
                 //uartPut(endereco);
+                
                 int receive = uartGet();
                 if(receive == 0){
+                    system("clear");
                     printf("\033[0;31m");
                     printf("### ERROR: SENSOR APRESENTA DEFEITO ###\n\n----------------------------------------------------------------------\n\n");
                     printf("\033[0m");
                 }else{
+                    system("clear");
                     printf("\033[0;32m");
                     printf("### STATUS: OK ###\n\n----------------------------------------------------------------------\n\n");
                     printf("\033[0m");

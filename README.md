@@ -41,8 +41,8 @@
 <div id="recursos-utilizados">
 	<h1> Recursos Utilizados </h1>
 	<ul>
-		<li>FPGA Cyclone IV (EP4CE30F23)</li>
-		<li>Raspberry Pi Zero</li>
+        <li><a href="#raspberry-pi-zero">Raspberry Pi Zero</a></li>
+		<li><a href="#fpga">FPGA Cyclone IV (EP4CE30F23)</a></li>
 	</ul>	
 </div>
 

@@ -8,7 +8,7 @@
     </p>
     <ul>
 		<li><p>Raspberry Pi Zero: Implementação da requisição de dados na Linguagem C em conjunto com a UART desenvolvida em Assembly ainda no <a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%201">Problema 1</a>;</p></li>
-		<li><p>FPGA: Implementação em Verilog da UART de comunicação e da máquina de estadoa para leitura dos dados recebidos pelo sensor.</p></li>
+		<li><p>FPGA: Implementação em Verilog da UART de comunicação e da máquina de estado para leitura dos dados recebidos pelo sensor.</p></li>
 	</ul>	
 </div>
 

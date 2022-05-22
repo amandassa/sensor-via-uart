@@ -13,13 +13,13 @@
 </div>
 
 <div id="equipe">
-    <h1>Equipe de Desenvolvimento:</h1>
+    <h1>Equipe de Desenvolvimento</h1>
     <ul>
 		<li><a href="https://github.com/argalvao"> Abel Ramalho Galvão</li>
 		<li><a href="https://github.com/aureliobarreto"> Aurélio Rocha Barreto </a></li>
         <li><a href="https://github.com/amandassa"> Amanda Silva Santos </a> </li>
 	</ul>
-    <h1>Tutor:</h1>
+    <h1>Tutor</h1>
     <ul>
         <li><a href="https://github.com/thiagocj">Thiago Cerqueira de Jesus</a></li>
     </ul>

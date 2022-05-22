@@ -13,7 +13,7 @@
 </div>
 
 
-## Equipe: <br>
+## Equipe de Desenvolvimento: <br>
 * Abel Ramalho Galvão; <br>
 * Aurélio Rocha Barreto; <br>
 * Amanda Silva Santos. <br>

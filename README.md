@@ -56,7 +56,7 @@
     <h3>Compilando o projeto na FPGA</h3>
     <p><code>$ cd /sensor-via-uart/Problema 2/fpga</code></p>
     <p>
-        Crie um projeto no Altera Quartus Prime Lite Edition 21, especificamente para a família EP4CE30F23 e importe os seguintes arquivos: 
+        Crie um projeto no <it>Altera Quartus Prime Lite Edition 21</it>, especificamente para a família EP4CE30F23 e importe os seguintes arquivos: 
     </p>
 </div>
 

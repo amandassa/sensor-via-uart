@@ -42,7 +42,7 @@
 
 <h1>Requisitos Atendidos</h1>
 <div id="requisitos">
-    <p>Raspberry Pi Zero:</p>
+    <p><b>Raspberry Pi Zero:</b></p>
 	<ul>
 		<li>O código deverá ser escrito em linguagem C :heavy_check_mark:</li>
 		<li>Utilizar o driver da UART implementado anteriormente :heavy_check_mark:</li>
@@ -50,7 +50,7 @@
 		<li>Mecanismo de controle de status de funcionamento dos sensores :heavy_check_mark:</li>
         <li>Apenas o SBC será capaz de iniciar uma comunicação :heavy_check_mark:</li>
 	</ul>
-    <p>FPGA:</p>
+    <p><b>FPGA:</b></p>
     <ul>
 		<li>O código deverá ser escrito em Verilog :heavy_check_mark:</li>
 		<li>Deverá ser capaz de ler e interpretar comandos oriundos do SBC :heavy_check_mark:</li>

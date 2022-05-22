@@ -26,6 +26,7 @@
 	<ul>
 		<li><a href="#inicio"> Início</li>
 		<li><a href="#recursos-utilizados"> Recursos Utilizados </a></li>
+        <li><a href="#requisitos"> Requisitos </a> </li>
 		<li><a href="#implementacao"> Implementação </a> </li>
 		<li><a href="#anexos"> Anexos </a></li>
 	</ul>	
@@ -36,6 +37,17 @@
 	<ul>
 		<li>FPGA Cyclone IV (EP4CE30F23);</li>
 		<li>Raspberry Pi Zero.</li>
+	</ul>	
+</div>
+
+<h1>Requisitos atendidos></h1>
+<div id="requisitos">
+    <p>Raspberry Pi Zero:</p>
+	<ul>
+		<li>O código deverá ser escrito em linguagem C; </li>:heavy_check_mark:
+		<li></li>
+		<li></li>
+		<li></li>
 	</ul>	
 </div>
 

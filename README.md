@@ -147,7 +147,7 @@
         <li>GNG</li>
     </ol>
     <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Inite). O 3º pino, no entanto, não será utilizado neste projeto.</p>
-    <div id="raspberry-pi-zero" style="display: inline_block" align="center">
+    <div id="dht11" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/application.png"/><br>
 		<p>
 		<b>Imagem 01</b> - Especificação do DHT11. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>

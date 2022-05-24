@@ -158,7 +158,7 @@
     <p align="justify">
     Quando o MCU envia um sinal de start, o sensor entra em modo de operação até que o sinal de start seja concluído. Feito isso, o DHT11 envia uma resposta de 40 bits, o que inclui as informações de temperatura e umidade. Ao finalizar o envio dos dados solicitados, o sensor volta a ficar em modo de espera e aguarda uma nova requisição.
     </p>
-    <div id="dht11" style="display: inline_block" align="center">
+    <div id="dht11-communication" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/communication_process.png"/><br>
 		<p>
 		<b>Imagem 02</b> - Processo de comunicação. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
@@ -169,7 +169,12 @@
 <div id="testes">
     <h1>Testes</h1>
     <p>
-    
+    <div id="circuito" style="display: inline_block" align="center">
+			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/circuito.jpeg"/><br>
+		<p>
+		<b>Imagem 03</b> - Montagem do circuito.
+		</p>
+	</div>
     </p>
 </div>
 
@@ -185,13 +190,13 @@
     <div id="raspberry-pi-zero" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/raspberry.jpg"/><br>
 		<p>
-		<b>Imagem 03</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
+		<b>Imagem 04</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
 		</p>
 	</div>
 	<div id="fpga" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/KitMERCURIO.png"/><br>
 		<p>
-		<b>Imagem 04</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
+		<b>Imagem 05</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
 		</p>
 	</div>	
 </div>

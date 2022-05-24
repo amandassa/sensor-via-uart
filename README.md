@@ -33,6 +33,7 @@
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
         <li><a href="#requisitos"> <b>Requisitos Atendidos</b> </a> </li>
 		<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
+        <li><a href="#funcionamento"> <b>Funcionamento do sensor (DHT11)</b> </a> </li>
         <li><a href="#melhorias"> <b>Possíveis Melhorias</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
@@ -133,6 +134,28 @@
     </div>
 </div>
 
+<div id="funcionamento">
+    <h1>Funcionamento do sensor (DHT11)</h1>
+    <h3>Especificação</h3>
+    <p>
+        O sensor DHT11 possui 4 pinos:
+    </p>
+    <ol>
+        <li>VCC</li>
+        <li>DATA</li>
+        <li>RESET</li>
+        <li>GNG</li>
+    </ol>
+    <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Inite). O 3º pino, no entanto, não será utilizado neste projeto.</p>
+    <div id="raspberry-pi-zero" style="display: inline_block" align="center">
+			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/application.png"/><br>
+		<p>
+		<b>Imagem 01</b> - Especificação do DHT11. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
+		</p>
+	</div>
+    <h3>Comunicação</h3>
+</div>
+
 <div id="melhorias">
     <h1>Possíveis Melhorias</h1>
     <p>
@@ -145,13 +168,13 @@
     <div id="raspberry-pi-zero" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/raspberry.jpg"/><br>
 		<p>
-		<b>Imagem 01</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
+		<b>Imagem 02</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
 		</p>
 	</div>
 	<div id="fpga" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/KitMERCURIO.png"/><br>
 		<p>
-		<b>Imagem 02</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
+		<b>Imagem 03</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
 		</p>
 	</div>	
 </div>

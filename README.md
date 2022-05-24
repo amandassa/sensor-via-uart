@@ -92,6 +92,15 @@
     <p>
         Crie um projeto no <it>Altera Quartus Prime Lite Edition 21</it>, especificamente para a família EP4CE30F23 e importe os seguintes arquivos: 
     </p>
+    <ul>
+		<li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/baudrate_gen.v">baudrate_gen.v</a></li>
+		<li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/controlador.v"></a>controlador.v</li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/decodificador.v"></a>decodificador.v</li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/dht11.v"></a>dht11.v</li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/receiver.v"></a>receiver.v</li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/transmiter.v"></a>transmiter.v</li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/uart0.v"></a>uart0.v</li>
+	</ul><br>
 </div>
 
 <div id="melhorias">

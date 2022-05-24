@@ -34,6 +34,7 @@
         <li><a href="#requisitos"> <b>Requisitos Atendidos</b> </a> </li>
 		<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
         <li><a href="#funcionamento"> <b>Funcionamento do sensor (DHT11)</b> </a> </li>
+        <li><a href="#testes"> <b>Testes</b> </a> </li>
         <li><a href="#melhorias"> <b>Possíveis Melhorias</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
@@ -163,6 +164,13 @@
 		<b>Imagem 02</b> - Processo de comunicação. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
 		</p>
 	</div>
+</div>
+
+<div id="testes">
+    <h1>Testes</h1>
+    <p>
+    
+    </p>
 </div>
 
 <div id="melhorias">

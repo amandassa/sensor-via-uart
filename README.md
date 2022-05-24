@@ -101,6 +101,51 @@
         <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/transmiter.v">transmiter.v</a></li>
         <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/uart0.v">uart0.v</a></li>
 	</ul><br>
+    <p>Com o projeto criado, configure os seguintes endereços:</p>
+    <div>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+    <table>
+    <tr>
+        <th>Node Name</th>
+        <th>Direction</th>
+        <th>Location</th>
+    </tr>
+    <tr>
+        <td>DHT_DATA</td>
+        <td>Output</td>
+        <td>PIN_H17</td>
+    </tr>
+    <tr>
+        <td>clk_50mhz</td>
+        <td>Output</td>
+        <td>PIN_T1</td>
+    </tr>
+    <tr>
+        <td>in</td>
+        <td>Input</td>
+        <td>PIN_E13</td>
+    </tr>
+    <tr>
+        <td>out</td>
+        <td>Output</td>
+        <td>PIN_E13</td>
+    </tr>
+    </table>
+    </div>
 </div>
 
 <div id="melhorias">

@@ -94,12 +94,12 @@
     </p>
     <ul>
 		<li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/baudrate_gen.v">baudrate_gen.v</a></li>
-		<li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/controlador.v"></a>controlador.v</li>
-        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/decodificador.v"></a>decodificador.v</li>
-        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/dht11.v"></a>dht11.v</li>
-        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/receiver.v"></a>receiver.v</li>
-        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/transmiter.v"></a>transmiter.v</li>
-        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/uart0.v"></a>uart0.v</li>
+		<li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/controlador.v">controlador.v</a></li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/decodificador.v">decodificador.v</a></li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/dht11.v">dht11.v</a></li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/receiver.v">receiver.v</a></li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/transmiter.v">transmiter.v</a></li>
+        <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/uart0.v">uart0.v</a></li>
 	</ul><br>
 </div>
 

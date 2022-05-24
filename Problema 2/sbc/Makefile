@@ -8,3 +8,5 @@ uartPut.o: uartPut.s
   as -g -o uartPut.o uartPut.s
 uartGet.o: uartGet.s
   as -g -o uartGet.o uartGet.s
+clean:
+  rm *.o *.a pbl2

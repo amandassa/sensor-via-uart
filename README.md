@@ -147,7 +147,7 @@
         <li>RESET</li>
         <li>GNG</li>
     </ol>
-    <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Inite). O 3º pino, no entanto, não será utilizado neste projeto.</p>
+    <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Unite). O 3º pino, no entanto, não será utilizado neste projeto.</p>
     <div id="dht11" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/application.png"/><br>
 		<p>

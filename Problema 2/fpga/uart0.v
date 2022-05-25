@@ -1,11 +1,13 @@
-module uart0(out, in, clk_50mhz, aux_led, reset, wait_out, d, DHT_DATA);
+module uart0(out, in, clk_50mhz, aux_led, led_control, reset, wait_out, d, DHT_DATA, error_dht11);
 		 
 input in, clk_50mhz, reset;
 output aux_led;
 output out;
 output wait_out;
-output DHT_DATA;
+inout DHT_DATA;
 output [7:0] d;
+output led_control;
+output error_dht11;
 
 //Provisorio pra testes
 //output [0:7]data;
@@ -20,32 +22,48 @@ baudrate_gen
 	.tick(clk_115200hz)
 );
 
-wire start;
-wire out_receiver;
-wire [7:0] meu_deus;
+wire control_decod;
+wire start_tx;
+wire [7:0] out_receiver;
 receiver receiver_0(
 	.clk_115200hz(clk_115200hz),
 	.in(in),
-	.reset(reset),
-	.data(meu_deus),		// 
-	.aux_led(aux_led)
+	.data(out_receiver),		// 
+	.aux_led(aux_led),
+	.control(control_decod)
 );
+wire wait_dht11;
+wire start_dht11;
+wire [0:39] dados_sensor;
 
-decodificador decod0(
-	.out_dados_8(paratx),
-	.in_solicitacao_8(meu_deus),
+decodificador decod(
+	.out_dados_8(in_transmitter),
+	.in_solicitacao_8(out_receiver),
 	.clock(clk_115200hz),
-	.start(start)
+	.start(start_tx),
+	.control(control_decod),
+	.wait_dht11(wait_dht11),
+	.start_dht11(start_dht11),
+	.sensor_data(dados_sensor)
 	);
-
-wire [7:0] paratx;
+	
+dht11 sensor(
+	 .i_Clock(clk_50mhz),  //50 MHz
+    .i_En(start_dht11), 
+    .i_Dht_Data(DHT_DATA),
+	 .sensor_data(dados_sensor),
+	 .o_Wait(wait_dht11),
+	 .o_Error(error_dht11),
+	 .ledPrint(led_control)
+    );
+	
+wire [0:7] in_transmitter;
 
 transmitter transmitter_0(
 	.clk_115200hz(clk_115200hz),
 	.out(out),
-	.reset(reset),
-	.data(paratx),
-	.start(start),
+	.data(in_transmitter),
+	.start(start_tx),
 	.led2(wait_out)
 	//.tx(d)
 );

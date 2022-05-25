@@ -25,7 +25,7 @@
 .equ UART_FBRD, 0x28 @ DIVIDOR DE BAURDATE FRACIONÁRIO
 @ MANIPULAÇÃO DOS BITS DE REGISTRADORES (DESLOCAMENTO)
 .equ UART_TXFF, (1<<5) @ CHECAR SE O FIFO ESTÁ CHEIO
-.equ UART_RXFE, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ VAZIO
+.equ UART_RXFF, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
 .equ UART_OE, (1<<11) @ overrun error bit
 .equ UART_BE, (1<<10) @ break error bit
 .equ UART_PE, (1<<9) @ parity error bit
@@ -82,7 +82,7 @@ uartGet: @ MAPEAMENTO DA MEMÓRIA
 
 getlp: 
 	ldr r2,[r8,#UART_FR] @ read the flag resister
-	tst r2,#UART_RXFE @ VERIFICAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
+	tst r2,#UART_RXFF @ VERIFICAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIA
 	bne getlp @ loop while receive FIFO is empty
 	ldr r0,[r8,#UART_DR] @ LER O DADO RECEBIDO DO REGISTRADOR DR
 	bx lr	

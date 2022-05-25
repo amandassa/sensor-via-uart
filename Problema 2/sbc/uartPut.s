@@ -25,7 +25,7 @@
 .equ UART_FBRD, 0x28 @ DIVIDOR DE BAURDATE FRACIONÁRIO
 @ MANIPULAÇÃO DOS BITS DE REGISTRADORES (DESLOCAMENTO)
 .equ UART_TXFF, (1<<5) @ CHECAR SE O FIFO ESTÁ CHEIO
-.equ UART_RXFE, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ VAZIO
+.equ UART_RXFF, (1<<6) @ CHECAR SE A FIFO DE RECEPÇÃO ESTÁ CHEIO
 .equ UART_OE, (1<<11) @ overrun error bit
 .equ UART_BE, (1<<10) @ break error bit
 .equ UART_PE, (1<<9) @ parity error bit
@@ -85,6 +85,11 @@ uartPut: @ MAPEAMENTO DA MEMÓRIA
 @.macro UART_PUT_BYTE byte
 		@ mov r0, #\byte  @ BYTE DE MENSAGEM A SER ENVIADO PARA A FPGA
 		str r9, [r8, #UART_DR]
+		
+loop: 	ldr r2, [r8, #UART_FR] @ CARREGANDO EM R2 O ENDEREÇO DO REGISTRADOR #UART_FR
+	    tst r2, #UART_RXFF @ VERIFICAR SE TA CHEIO O FIFO
+		ldr r0, [r8, #UART_DR]
+        bne loop
 
 endTX: 	ldr r1, [r8, #UART_FR]
 		and r1, #0b1000

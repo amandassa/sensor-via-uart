@@ -35,10 +35,19 @@ int main (){
                 //uartPut(endereco);
                 
                 int receive = uartGet();
-                system("clear");
-                printf("\033[0;34m");
-                printf("Umidade: %d UR\n----------------------------------------------------------------------\n\n" , receive);
-                printf("\033[0m");
+
+                if(receive == 0){
+                    system("clear");
+                    printf("\033[0;31m");
+                    printf("### ERRO NA LEITURA DO SENSOR ###\n\n----------------------------------------------------------------------\n\n");
+                    printf("\033[0m");
+                }else{
+                    system("clear");
+                    printf("\033[0;34m");
+                    printf("Umidade: %d UR\n----------------------------------------------------------------------\n\n" , receive);
+                    printf("\033[0m");
+                }
+                fflush(param);
                 break;
             }
             case 2: {
@@ -48,10 +57,18 @@ int main (){
                 //uartPut(endereco);
                
                 int receive = uartGet();
+                if(receive == 0){
+                    system("clear");
+                    printf("\033[0;31m");
+                    printf("### ERRO NA LEITURA DO SENSOR ###\n\n----------------------------------------------------------------------\n\n");
+                    printf("\033[0m");
+                }else{
                 system("clear");
                 printf("\033[0;33m");
                 printf("Temperatura: %d° C\n----------------------------------------------------------------------\n\n" , receive);
                 printf("\033[0m");
+                }
+                fflush(param);
                 break;
             }case 3: {
                 
@@ -60,23 +77,25 @@ int main (){
                 //uartPut(endereco);
                 
                 int receive = uartGet();
-                if(receive == 0){
+                if(receive == 31){
                     system("clear");
                     printf("\033[0;31m");
                     printf("### ERROR: SENSOR APRESENTA DEFEITO ###\n\n----------------------------------------------------------------------\n\n");
                     printf("\033[0m");
-                }else{
+                }else if(receive == 0){
                     system("clear");
                     printf("\033[0;32m");
                     printf("### STATUS: OK ###\n\n----------------------------------------------------------------------\n\n");
                     printf("\033[0m");
-                }        
+                }
+                fflush(param);        
                 break;
             }default: {
                 system("clear");
                 printf("\033[0;31m");
                 printf("### ERROR: SOLICITAÇÃO INVÁLIDA ###\n\n----------------------------------------------------------------------\n\n");
                 printf("\033[0m");
+                fflush(param);
                 break;
             }
         }

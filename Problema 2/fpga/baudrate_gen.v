@@ -1,7 +1,7 @@
 module baudrate_gen(clk, tick);
 
 input clk; 
-output reg tick; 
+output reg tick; // saída com o clock dividido em 115200 Khz
 reg[27:0] counter=28'd0;
 parameter DIVISOR = 28'd434;
 // clock  50Mhz/115200 = 434 

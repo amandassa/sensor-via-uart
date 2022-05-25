@@ -1,14 +1,12 @@
-module receiver(clk_115200hz, in, data, aux_led, control, d);
+module receiver(clk_115200hz, in, data, control);
 
-input clk_115200hz, in;
-output control;
+input clk_115200hz, in;		// in = sinal vindo da raspberry	
+output control;				// sinal de enable do decodificador
 reg control = 1'b0;
-output reg aux_led = 1'b0;
-output reg [7:0] d;
-output [7:0]data;
+output [7:0]data;           // registrador de dados que enviará os dados recebidos para o decodificador
 reg [7:0]data;	
-reg [7:0]buffer;
-reg [1:0]state;
+reg [7:0]buffer;            //buffer temporário para receber os dados
+reg [1:0]state;				// registrador de estados da maquina de estados
 	parameter START = 0, 
 				 DATA = 1,
 				 STOP = 2;			 
@@ -28,11 +26,11 @@ case (state)
 		end
 	DATA:
 		begin
-			if(counter > 7) begin
+			if(counter > 7) begin  // Se counter > 7 acabou a recepção
 				control = 1'b0;
 				state <= STOP;
 			end
-			else begin			
+			else begin		    	// Se counter < 7 armazena o bit atual no buffer e incrementa counter
 				buffer[counter] = in;
 				d[counter] = buffer[counter];
 				counter = counter + 1;		
@@ -41,10 +39,9 @@ case (state)
 		end
 	STOP:
 		begin
-			data[7:0] <= buffer [7:0];
-			counter <= 0;
-			aux_led <= 1'b1;
-			control <= 1'b1;
+			data[7:0] <= buffer [7:0];  // registrador data recebe o buffer que é passado para saída
+			counter <= 0; 				// reseta counter
+			control <= 1'b1;			// seta o controle do decodificador em 1
 			state <= START;
 			
 		end

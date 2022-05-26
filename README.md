@@ -204,6 +204,13 @@
         <li>DATA: Estado de leitura de dados do sensor. Neste estado, a seção de mensagem do sensor requisitada é direcionada para a saída. </li>
         <li>STOP: Neste estado, o módulo do sensor é desativado e TX é ativado, permitindo que os dados sejam enviados para o SBC.</li>
         </p>
+    <h3>Controle do sensor</h3>
+        <p>
+        Este módulo é responsável por estabelecer a comunicação com o sensor DHT11 e encaminhar sua resposta. O módulo foi implementado como uma máquina mealy de 12 estados. Este processo segue os passos necessários para realizar a leitura seguindo o protocolo de <a href="#funcionamento">funcionamento do sensor</a>:
+        <li>Enviar o sinal de sincronização e aguardar a resposta da sincronização do sensor</li>
+        <li>Assim que a sincronização é completada, ocorre a decodificação de bits de mensagem de acordo com o período de tempo em que o sinal de resposta permanece em alto.</li>
+        <li>Quando os 40 bits estão prontos no buffer, o barramento com a resposta é liberado para o módulo seguinte.</li>
+        </p>
 </div>
 
 <div id="testes">

@@ -1,14 +1,13 @@
 <div id="inicio">
     <h1>Sistema de comunicação serial com  Raspberry PI, FPGA Cyclone IV e Sensor DHT11</h1>
 	<p align="justify"> 
-		Este projeto consiste na implementação um protótipo de sistema para medição de temperatura e umidade atravéz do sensor <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">DHT11</a>. O protótipo realiza a leitura dos dados enviados pelo sensor por meio de uma FPGA e, estabelece uma comunicação serial RS-232 com o SBC Raspberry Pi Zero, o qual faz requisições e recebe os dados como resposta. 	
-	</p><br>
+		Este projeto consiste na implementação de um protótipo de sistema para medição de temperatura e umidade através do sensor <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">DHT11</a>. O produto implementa comunicação serial entre o SBC Raspberry Pi Zero, de onde partem as solicitações de medição e a FPGA Cyclone IV, que atua como plataforma para ativação e leitura do sensor.
     <p>
-        O sistema foi dividido em duas partes: 
+        O sistema é composto por duas partes principais: 
     </p>
     <ul>
-		<li><p>Raspberry Pi Zero: Implementação da requisição de dados na Linguagem C em conjunto com a UART desenvolvida em Assembly ainda no <a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%201">Problema 1</a>;</p></li>
-		<li><p>FPGA: Implementação em Verilog da UART de comunicação e da máquina de estado para leitura dos dados recebidos pelo sensor.</p></li>
+		<li><p>Raspberry Pi Zero: Módulo responsável pela requisição de medição, usando Linguagem C e Assembly na implementação da UART desenvolvida ainda no <a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%201">Problema 1</a>;</p></li>
+		<li><p>FPGA: Implementação em Verilog da UART para comunicação serial e dos módulos de ativação e comunicação com o sensor.</p></li>
 	</ul>	
 </div>
 
@@ -31,11 +30,10 @@
 		<li><a href="#inicio"> <b>Início</b></li>
         <li><a href="#equipe"> <b>Equipe de Desenvolvimento</b></li>
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
-        <li><a href="#requisitos"> <b>Requisitos Atendidos</b> </a> </li>
-		<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
+		<li><a href="#como-executar"> <b>Como executar</b> </a> </li>
         <li><a href="#funcionamento"> <b>Funcionamento do sensor (DHT11)</b> </a> </li>
-        <li><a href="#testes"> <b>Testes</b> </a> </li>
-        <li><a href="#melhorias"> <b>Possíveis Melhorias</b> </a> </li>
+        <li><a href="#testes"> <b>Exemplo de montagem</b> </a> </li>
+        <li><a href="#melhorias"> <b>Conclusões</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
 </div>
@@ -48,36 +46,20 @@
 	</ul>	
 </div>
 
-<div id="requisitos">
-    <h1>Requisitos Atendidos</h1>
-    <p><b>Raspberry Pi Zero:</b></p>
-	<ul>
-		<li>O código deverá ser escrito em linguagem C :heavy_check_mark:</li>
-		<li>Utilizar o driver da UART implementado anteriormente :heavy_check_mark:</li>
-		<li>Capacidade de interligação com até 32 sensores :heavy_multiplication_x:</li>
-		<li>Mecanismo de controle de status de funcionamento dos sensores :heavy_check_mark:</li>
-        <li>Apenas o SBC será capaz de iniciar uma comunicação :heavy_check_mark:</li>
-	</ul>
-    <p><b>FPGA:</b></p>
-    <ul>
-		<li>O código deverá ser escrito em Verilog :heavy_check_mark:</li>
-		<li>Deverá ser capaz de ler e interpretar comandos oriundos do SBC :heavy_check_mark:</li>
-		<li>Os comandos serão compostos por palavras de 8 bits :heavy_check_mark:</li>
-		<li>As requisições do SBC são compostas de 2 bytes (Comando + Endereço) :heavy_multiplication_x:</li>
-	</ul>
-</div>
-
-<div id="implementacao">
-    <h1>Implementação</h1>
+<div id="como-executar">
+    <h1>Como executar</h1>
     <p>
-        Para realizar a implementação deste projeto siga as etapas a seguir:
+        Para executar, é necessário dispor de todos os <a href="#recursos-utilizados">itens</a> listados na seção de recursos.
+    </p>
+    <p>
+        Siga as etapas a seguir:
     </p>
     <h3>Realize o download do projeto</h3>
     <p><code>$ git clone https://github.com/amandassa/sensor-via-uart.git</code></p>
     <h3>Compilando o projeto na Raspberry Pi Zero</h3>
     <p><code>$ cd /sensor-via-uart/Problema 2/sbc</code></p>
     <p>
-        Tranfira os seguintes aquivos para o Raspberry P zero: 
+        Tranfira os seguintes arquivos para o Raspberry PI Zero: 
     </p>
     <ul>
 		<li><a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/sbc/Makefile">Makefile</a></li>
@@ -133,6 +115,15 @@
     </tr>
     </table>
     </div>
+    <p>
+        Carregue o projeto na FPGA com a ferramenta Programmer do Quartus Lite.
+    </p>
+    <p> 
+        Assegure-se de que os componentes estão devidamente conectados para a comunicação serial: O TX (out) de um módulo deve estar ligado ao RX (in) do outro, assim como o ground (GND) dos módulos que devem estar conectados, como mostra o <a href="#conexaoimg">diagrama</a>. Além disso, o sensor também deve estar devidamente conectado com o pino referente a DHT_DATA do módulo verilog.
+    </p>
+    <div id="conexoes" style="display: inline_block" align="center">
+        <img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/CONEXOES.jpg"/><br>
+    </div>
 </div>
 
 <div id="funcionamento">
@@ -144,10 +135,10 @@
     <ol>
         <li>VCC</li>
         <li>DATA</li>
-        <li>RESET</li>
-        <li>GNG</li>
+        <li>NULL</li>
+        <li>GND</li>
     </ol>
-    <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Unite). O 3º pino, no entanto, não será utilizado neste projeto.</p>
+    <p>O 2º pino, o pino de dados caracteriza-se como entrada e saída, pois, este recebe as requisições e realiza o envio dos dados ao MCU (Micro-computer Unite).</p>
     <div id="dht11" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/application.png"/><br>
 		<p>
@@ -156,8 +147,14 @@
 	</div>
     <h3>Comunicação</h3>
     <p align="justify">
-    Quando o MCU envia um sinal de start, o sensor entra em modo de operação até que o sinal de start seja concluído. Feito isso, o DHT11 envia uma resposta de 40 bits, o que inclui as informações de temperatura e umidade. Ao finalizar o envio dos dados solicitados, o sensor volta a ficar em modo de espera e aguarda uma nova requisição.
-    </p>
+    Para iniciar a comunicação, o MCU deve enviar ao sensor um sinal em nível de tensão baixo por 80ms, depois em nível alto por 18us. Como resposta, o sensor enviará sinal baixo por 80us seguido de alto por mais 80us. 
+    Em seguida, o sensor envia sinal baixo por mais 50us e inicia a transmissão dos 40 bits de mensagem contendo a medição do ambiente e o checksum. </p>
+    <p>A partir desse momento a resposta do sensor é enviada como um databus contendo sinais em nível lógico alto que podem ser interpretados de acordo com sua duração:
+    <li> 0, se alto por cerca de 28us</li>
+    <li> 1, se alto por cerca de 70us</li>
+    Os bits de mensagem a serem decodificados são enviados pelo sensor alternando entre sinais de nível lógico baixo com duração de 50us.
+    Após o envio, o sensor volta ao modo de espera e aguarda uma nova requisição.
+    </p>    
     <div id="dht11-communication" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/communication_process.png"/><br>
 		<p>
@@ -166,8 +163,50 @@
 	</div>
 </div>
 
+<div id="implementacao">
+    <h1>Breve descrição da implementação</h1>
+    <h2>Módulo Raspberry PI Zero</h2>
+        <p>Neste módulo, a implementação do protocolo UART para Raspberry PI desenvolvida em Assembly foi utilizada como uma biblioteca C para estabelecer a comunicação RS-232 do SBC. As funções utilizadas foram:
+        <li>uartConfig(): Configura a UART do SBC definindo os parâmetros de baud rate, stop bits, ativação e verificação da fila de transmissão.</li>
+        <li>uartPut(): Envia o byte de mensagem pela via serial. Caso receba mais que 8 bits de mensagem, apenas os 8 menos significativos vão compor a mensagem enviada.</li>
+        <li>uartGet(): Recebe o byte de mensagem lendo o registrador DATA_REGISTER.</li>
+        </p>
+        <p>
+        Essas funções são invocadas no programa C que faz a leitura das solicitações via terminal.
+        </p>
+    <h2>Módulo FPGA</h2>
+    <h3>UART</h3>
+        <p>
+        Para implementação da UART na FPGA foram desenvolvidos os módulos <a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/fpga/transmiter.v">transmitter</a> e <a href="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/fpga/receiver.v">receiver</a> baseados em máquina de estados finitos de Mealy, ambas compostas pelos três estados:
+        <li>START:</li>
+            <p>Estado inicial e de espera, permanece nele até que seja recebido sinal de "enable" que indique início do recebimento de dados (serial, no caso de RX ou paralelo, no caso de TX). Enquanto a entrada de EN não é recebida, este estado mantém o sinal de saída no TX em nível alto, que é o sinal de bus IDLE da comunicação.</p>
+        <li>DATA:</li>
+            <p>
+            Estado de recebimento de dados. No RX, como o recebimento é serial os dados são armazenados em um buffer para serem transmitidos por um barramento. Já em TX os dados são recebidos em paralelo e serializados por um envio sob iteração.
+            </p>
+        <li>STOP: </li>
+            <p>
+            Estado de fim da recepção e transmissão de dados. No RX, os sinais armazenados no buffer são transmitidos pelo barramento de saída e em TX é feita a reinicialização do contador de iteração. Ao fim deste estado ambos os módulos TX e RX voltam para START.
+            </p>
+        </p>
+    <h3>Decodificador</h3>
+        <p>
+        O módulo decodificador de requisições possui as funções de:
+            <li>Receber do RX a solicitação de medição
+            </li>
+            <li>Ativar o módulo do sensor e receber sua resposta</li>
+            <li>Ativar e transmitir para TX o sinal de resposta referente à medição solicitada</li>
+        </p>
+        <p>Para isso, foram implementados quatro estados:
+        <li>START: Estado inicial. Permanece nele até que seja recebido sinal de enable. Caso ativado, ativa o módulo do sensor.</li>
+        <li>WAIT_DHT11: Estado de espera da sincronização do sensor. Permanece nele até que a mensagem do sensor seja recebida.</li>
+        <li>DATA: Estado de leitura de dados do sensor. Neste estado, a seção de mensagem do sensor requisitada é direcionada para a saída. </li>
+        <li>STOP: Neste estado, o módulo do sensor é desativado e TX é ativado, permitindo que os dados sejam enviados para o SBC.</li>
+        </p>
+</div>
+
 <div id="testes">
-    <h1>Testes</h1>
+    <h1>Exemplo de montagem</h1>
     <p>
     <div id="circuito" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/circuito.jpeg"/><br>
@@ -178,10 +217,10 @@
     </p>
 </div>
 
-<div id="melhorias">
-    <h1>Possíveis Melhorias</h1>
+<div id="conclusões">
+    <h1>Conclusões</h1>
     <p>
-    
+    O produto-solução proposto implementa comunicação serial RS-232 entre um SBC (Raspberry Pi Zero) e a FPGA Cyclone IV. Com os módulos de controle desenvolvidos, é possível realizar requisições de medição de temperatura e umidade por meio do sensor DHT11, que é ativado e responde adequadamente aos comandos do sistema. No entanto, o retorno da leitura vinda da FPGA para o SBC ainda apresenta falhas. Por meio de testes foi possível identificar que a comunicação entre os componentes é interrompida a partir da integração do módulo do sensor. Possíveis ajustes futuros devem incluir a correção do problema entre os módulos de resposta do sensor e o TX da FPGA, para que seja possível receber adequadamente os 8 bits de mensagem solicitados e retorná-los no terminal de interação com o usuário.
     </p>
 </div>
 

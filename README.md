@@ -32,8 +32,9 @@
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
 		<li><a href="#como-executar"> <b>Como executar</b> </a> </li>
         <li><a href="#funcionamento"> <b>Funcionamento do sensor (DHT11)</b> </a> </li>
+        <li><a href="#implementacao"> <b>Implementação</b> </a> </li>
         <li><a href="#testes"> <b>Exemplo de montagem</b> </a> </li>
-        <li><a href="#melhorias"> <b>Conclusões</b> </a> </li>
+        <li><a href="#conclusoes"> <b>Conclusões</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
 </div>
@@ -217,7 +218,7 @@
     </p>
 </div>
 
-<div id="conclusões">
+<div id="conclusoes">
     <h1>Conclusões</h1>
     <p>
     O produto-solução proposto implementa comunicação serial RS-232 entre um SBC (Raspberry Pi Zero) e a FPGA Cyclone IV. Com os módulos de controle desenvolvidos, é possível realizar requisições de medição de temperatura e umidade por meio do sensor DHT11, que é ativado e responde adequadamente aos comandos do sistema. No entanto, o retorno da leitura vinda da FPGA para o SBC ainda apresenta falhas. Por meio de testes foi possível identificar que a comunicação entre os componentes é interrompida a partir da integração do módulo do sensor. Possíveis ajustes futuros devem incluir a correção do problema entre os módulos de resposta do sensor e o TX da FPGA, para que seja possível receber adequadamente os 8 bits de mensagem solicitados e retorná-los no terminal de interação com o usuário.

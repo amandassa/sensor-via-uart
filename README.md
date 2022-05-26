@@ -86,7 +86,7 @@
         <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/transmiter.v">transmiter.v</a></li>
         <li><a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%202/fpga/uart0.v">uart0.v</a></li>
 	</ul><br>
-    <p>Com o projeto criado, configure os seguintes endereços:</p>
+    <p>Assegure-se de que o arquivo "uart0.v" está definido como top-level do projeto para compilação. Com o projeto compilado, configure os seguintes pinos:</p>
     <div>
     <table align="center">
     <tr>
@@ -124,6 +124,9 @@
     </p>
     <div id="conexoes" style="display: inline_block" align="center">
         <img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/CONEXOES.jpg"/><br>
+        <p>
+        <b>Imagem 01</b> - Diagrama ilustrativo da conexão adequada do circuito.
+        </p>
     </div>
 </div>
 
@@ -143,7 +146,7 @@
     <div id="dht11" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/application.png"/><br>
 		<p>
-		<b>Imagem 01</b> - Especificação do DHT11. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
+		<b>Imagem 02</b> - Especificação do DHT11. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
 		</p>
 	</div>
     <h3>Comunicação</h3>
@@ -159,7 +162,7 @@
     <div id="dht11-communication" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/communication_process.png"/><br>
 		<p>
-		<b>Imagem 02</b> - Processo de comunicação. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
+		<b>Imagem 03</b> - Processo de comunicação. <b>Fonte:</b> <a href="https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf">Datasheet</a>
 		</p>
 	</div>
 </div>
@@ -201,7 +204,7 @@
         <p>Para isso, foram implementados quatro estados:
         <li>START: Estado inicial. Permanece nele até que seja recebido sinal de enable. Caso ativado, ativa o módulo do sensor.</li>
         <li>WAIT_DHT11: Estado de espera da sincronização do sensor. Permanece nele até que a mensagem do sensor seja recebida.</li>
-        <li>DATA: Estado de leitura de dados do sensor. Neste estado, a seção de mensagem do sensor requisitada é direcionada para a saída. </li>
+        <li>DATA: Estado de leitura de dados do sensor. Neste estado, a seção de mensagem do sensor requisitada é direcionada para a saída. Os bits de 0 a 7 da mensagem correspondem ao valor inteiro da medição de umidade. Os bits 16 a 23 correspondem ao inteiro da temperatura. Os últimos 8 bits são checksum.</li>
         <li>STOP: Neste estado, o módulo do sensor é desativado e TX é ativado, permitindo que os dados sejam enviados para o SBC.</li>
         </p>
     <h3>Controle do sensor</h3>
@@ -214,12 +217,18 @@
 </div>
 
 <div id="testes">
-    <h1>Exemplo de montagem</h1>
+    <h1>Testes</h1>
     <p>
     <div id="circuito" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/circuito.jpeg"/><br>
 		<p>
-		<b>Imagem 03</b> - Montagem do circuito.
+		<b>Imagem 04</b> - Montagem do circuito.
+		</p>
+	</div>
+    <div id="osciloscopio" style="display: inline_block" align="center">
+			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/oscilos.jpeg"/><br>
+		<p>
+		<b>Imagem 05</b> - 40 bits de resposta do DHT11
 		</p>
 	</div>
     </p>
@@ -237,13 +246,13 @@
     <div id="raspberry-pi-zero" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/raspberry.jpg"/><br>
 		<p>
-		<b>Imagem 04</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
+		<b>Imagem 06</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
 		</p>
 	</div>
 	<div id="fpga" style="display: inline_block" align="center">
 			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/KitMERCURIO.png"/><br>
 		<p>
-		<b>Imagem 05</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
+		<b>Imagem 07</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
 		</p>
 	</div>	
 </div>
